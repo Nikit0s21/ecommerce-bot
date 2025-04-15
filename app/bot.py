@@ -1,5 +1,5 @@
 import os
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackQueryHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from app.handlers.catalog import catalog_handler, search_handler
 from app.handlers.orders import order_handler, order_history_handler
@@ -17,7 +17,7 @@ def main():
     dp.add_handler(CommandHandler("help", help_handler))
     dp.add_handler(CommandHandler("catalog", catalog_handler))
     dp.add_handler(CommandHandler("history", order_history_handler))
-    dp.add_handler(MessageHandler(Filters.text & (~Filters.command), search_handler))
+    dp.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), search_handler))
     dp.add_handler(CallbackQueryHandler(order_handler, pattern='^order_'))
 
     # Запуск бота
