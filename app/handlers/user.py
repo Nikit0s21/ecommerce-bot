@@ -3,7 +3,7 @@ from app.models import db, User, Visit
 from datetime import datetime
 
 
-def start_handler(update, context):
+async def start_handler(update, context):
     user = update.effective_user
     existing_user = User.query.filter_by(username=user.username).first()
 
@@ -11,7 +11,7 @@ def start_handler(update, context):
         new_user = User(
             username=user.username,
             email=f"{user.username}@telegram.org",
-            password_hash="telegram_auth",  # В реальном проекте нужно использовать нормальную аутентификацию
+            password_hash="telegram_auth",
             first_name=user.first_name,
             last_name=user.last_name,
             created_at=datetime.utcnow(),
@@ -36,7 +36,7 @@ def start_handler(update, context):
     ]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
 
-    update.message.reply_text(
+    await update.message.reply_text(
         f"👋 Привет, {user.first_name}!\n"
         "Я бот интернет-магазина. Вот что я могу:\n\n"
         "🔍 /catalog - Просмотреть каталог товаров\n"
@@ -46,8 +46,8 @@ def start_handler(update, context):
     )
 
 
-def help_handler(update, context):
-    update.message.reply_text(
+async def help_handler(update, context):
+    await update.message.reply_text(
         "ℹ️ Помощь по использованию бота:\n\n"
         "1. Для поиска товаров просто введите название в чат\n"
         "2. Используйте /catalog для просмотра по категориям\n"

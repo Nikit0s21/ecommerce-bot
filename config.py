@@ -6,7 +6,7 @@ class Config:
     TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 
     # Database
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql://user:password@localhost/ecommerce')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql://postgres:oquojdar@localhost/ecommerce')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Redis
