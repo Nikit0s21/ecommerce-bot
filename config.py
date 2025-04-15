@@ -1,12 +1,13 @@
 import os
-
+from dotenv import load_dotenv
+load_dotenv()
 
 class Config:
     # Telegram
     TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 
     # Database
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql://postgres:oquojdar@localhost/ecommerce')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql://postgres:oquojdar21@localhost/ecommerce')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # Redis
